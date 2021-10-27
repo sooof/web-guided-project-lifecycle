@@ -2,6 +2,16 @@ import React from 'react';
 import axios from 'axios';
 
 class App extends React.Component {
+    state = {
+        dogImages: [
+        "https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg",
+        "https://images.dog.ceo/breeds/hound-afghan/n02088094_1007.jpg",
+        "https://images.dog.ceo/breeds/hound-afghan/n02088094_1023.jpg",
+        "https://images.dog.ceo/breeds/hound-afghan/n02088094_10263.jpg",
+        "https://images.dog.ceo/breeds/hound-afghan/n02088094_10715.jpg",
+        "https://images.dog.ceo/breeds/hound-walker/n02089867_1988.jpg"
+        ]
+    }
 
     render (){
         return(
@@ -12,7 +22,12 @@ class App extends React.Component {
                     <button>Fetch Dogs</button>
                 </form>
                 <div>
-                    <img src="https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg"/>
+                    {
+                        this.state.dogImages.map( (dogImage)=> (
+                            <img src={dogImage} key={dogImage.id}/>
+                        ))
+                    }
+                    {/* <img src="https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg"/> */}
                 </div>
             </div>
         )
