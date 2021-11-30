@@ -10,6 +10,15 @@ class App extends React.Component {
             "https://images.dog.ceo/breeds/hound-afghan/n02088094_10263.jpg"
         ]
     }
+    componentDidMount() {
+        axios.get('https://dog.ceo/api/breed/hound/images')
+            .then(resp=> {
+                console.log(resp);
+            })
+            .catch(err=> {
+                console.log(err);
+            })
+    }
     render() {
         console.log(this.state.dogImages)
         return(<div>
@@ -19,10 +28,11 @@ class App extends React.Component {
                 <button>Search</button>
             </form>
             <div id="dogImages">
-                <img src="https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg"/>
-                <img src="https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg"/>
-                <img src="https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg"/>
-                <img src="https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg"/>
+                {
+                    this.state.dogImages.map(dogImage => {
+                        return(<img width="200" src={dogImage}/>);
+                    })
+                }
             </div>
         </div>);
     }
