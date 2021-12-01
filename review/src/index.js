@@ -3,6 +3,9 @@
 import React, { Component } from "react";
 import { render } from 'react-dom'
 
+import {people} from './people';
+
+console.log("people:  === ", people)
 
 class App extends Component {
 
