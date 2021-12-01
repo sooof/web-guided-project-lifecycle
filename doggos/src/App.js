@@ -48,12 +48,12 @@ class App extends React.Component {
         //     }
         // }
         console.log("changes state ", this.state);
-        if (this.state.breed === "chihuahua") {
-            this.setState({
-                ...this.state,
-                breed: "husky"
-            })
-        }
+        // if (this.state.breed === "chihuahua") {
+        //     this.setState({
+        //         ...this.state,
+        //         breed: "husky"
+        //     })
+        // }
     }
     handleClick = (e)=> {
         e.preventDefault();
@@ -76,6 +76,17 @@ class App extends React.Component {
         //4. change this.state.dogImages to response
     }
     handleChange = (e) => {
+        // axios.get(`https://dog.ceo/api/breed/${this.state.breed}/images`)
+        // .then(resp=> {
+        //     this.setState({
+        //         ...this.state,
+        //         dogImages: resp.data.message,
+        //         // breed: e.target.value
+        //     })
+        // })
+        // .catch(err=> {
+        //     console.log(err);
+        // }) 
         this.setState({
             ...this.state,
             breed: e.target.value
@@ -87,7 +98,7 @@ class App extends React.Component {
         return(<div>
             <h1>Dog Image Retriever v1.4</h1>
             <form>
-                <input onChange={this.handleChange}/>
+                <input value={this.state.value} onChange={this.handleChange}/>
                 <button onClick={this.handleClick}>Search</button>
             </form>
             <div id="dogImages">
