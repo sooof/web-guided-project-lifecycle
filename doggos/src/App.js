@@ -29,23 +29,30 @@ class App extends React.Component {
     }
     componentDidUpdate(prevProps, prevState) {
         console.log("Props are updating")
-        console.log('old state: ', prevState);
-        if(prevState.dogImages !== this.state.dogImages){
-            console.log("Changes to dogImages")
-            if(this.state.breed === "chihuahua"){
-                axios.get('https://dog.ceo/api/breed/husky/images')
-                .then(resp=> {
-                    this.setState({
-                        ...this.state,
-                        dogImages:resp.data.message,
-                        breed: "husky"
-                    });
-                })
-                .catch(err=> {
-                    console.log(err);
-                });
+        // console.log('old state: ', prevState);
+        // if(prevState.dogImages !== this.state.dogImages){
+        //     console.log("Changes to dogImages")
+        //     if(this.state.breed === "chihuahua"){
+        //         axios.get('https://dog.ceo/api/breed/husky/images')
+        //         .then(resp=> {
+        //             this.setState({
+        //                 ...this.state,
+        //                 dogImages:resp.data.message,
+        //                 breed: "husky"
+        //             });
+        //         })
+        //         .catch(err=> {
+        //             console.log(err);
+        //         });
             
-            }
+        //     }
+        // }
+        console.log("changes state ", this.state);
+        if (this.state.breed === "chihuahua") {
+            this.setState({
+                ...this.state,
+                breed: "husky"
+            })
         }
     }
     handleClick = (e)=> {
