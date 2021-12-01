@@ -15,7 +15,7 @@ class App extends React.Component {
         breed: ""
     }
 
-    componentDidMount() {
+    componentDidMount(prevProps, prevState) {
         axios.get('https://dog.ceo/api/breed/hound/images')
             .then(resp=> {
                 this.setState({
@@ -27,17 +27,37 @@ class App extends React.Component {
                 console.log(err);
             })
     }
-
+    componentDidUpdate(prevProps, prevState) {
+        console.log("Props are updating")
+        console.log('old state: ', prevState);
+        if(prevState.dogImages !== this.state.dogImages){
+            console.log("Changes to dogImages")
+            if(this.state.breed === "chihuahua"){
+                axios.get('https://dog.ceo/api/breed/husky/images')
+                .then(resp=> {
+                    this.setState({
+                        ...this.state,
+                        dogImages:resp.data.message,
+                        breed: "husky"
+                    });
+                })
+                .catch(err=> {
+                    console.log(err);
+                });
+            
+            }
+        }
+    }
     handleClick = (e)=> {
         e.preventDefault();
         //Search for dogs
         //1. get user input into state
-        console.log(this.state.breed);
+        // console.log(this.state.breed);
         //2. capture submit
         //3. execute axios call based on user input
         axios.get(`https://dog.ceo/api/breed/${this.state.breed}/images`)
             .then(resp=> {
-                console.log(resp);
+                // console.log(resp);
                 this.setState({
                     ...this.state,
                     dogImages: resp.data.message
@@ -56,7 +76,7 @@ class App extends React.Component {
     }
 
     render() {
-        console.log(this.state.dogImages)
+        // console.log(this.state.dogImages)
         return(<div>
             <h1>Dog Image Retriever v1.4</h1>
             <form>
@@ -73,4 +93,4 @@ class App extends React.Component {
         </div>);
     }
 }
-export default App;
+export default App; 
