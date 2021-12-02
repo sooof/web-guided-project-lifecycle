@@ -1,8 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles.scss';
-import AppFunc from './AppFunc';
-import AppClass from './AppClass';
+import React, { Component } from "react";
+import { render } from "react-dom";
+import CitiesList from "./CitiesList";
+import cities from "./cities";
 
-const rootElement = document.getElementById('root');
-ReactDOM.render(<AppFunc />, rootElement);
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      cities: []
+    };
+  }
+
+  componentDidMount() {
+    // 'fetch' our cities data.
+    console.log(cities);
+    // set cities on state for use in CitiesList
+    this.setState({ cities: cities.data });
+  }
+  // lets fill this in so we can have our cities.
+  render() {
+    return <CitiesList greeting="string" citiesProp={this.state.cities} />;
+  }
+}
+
+render(<App />, document.getElementById("root"));
