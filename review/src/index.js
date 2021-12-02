@@ -18,7 +18,11 @@ class App extends Component {
       }
       componentDidMount(){
         console.log("componentDidMount CDM Invoked!" ) 
-        this.setState({friends:people})
+        // this.setState({friends:people}) 
+        this.setState({
+            ...this.state,
+            friends:people
+        })
       }
 
   render() {
