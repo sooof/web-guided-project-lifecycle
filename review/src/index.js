@@ -6,17 +6,20 @@ import "./styles.scss"
 
 import {people} from './people';
 
-console.log("people:  === ", people)
+// console.log("people:  === ", people)
 
 class App extends Component {
     constructor() {
         console.log("constructor Invoked!" )
         super();
         this.state = {
-          friends: people
+          friends: []
         }
       }
-
+      componentDidMount(){
+        console.log("componentDidMount CDM Invoked!" ) 
+        this.setState({friends:people})
+      }
 
   render() {
     console.log("Render Invoked ")
