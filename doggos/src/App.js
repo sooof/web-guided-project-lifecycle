@@ -35,6 +35,15 @@ class App extends React.Component {
             if(this.state.breed === "chihuahua"){
                 console.log("In side")
                 getDogImages("husky")
+                .then(resp=> {
+                    this.setState({
+                        ...this.state,
+                        dogImages:resp.data.message
+                    });
+                })
+                .catch(err=> {
+                    console.log(err);
+                })
             }
         }
         console.log("changes state ", this.state);
@@ -52,7 +61,16 @@ class App extends React.Component {
         // console.log(this.state.breed);
         //2. capture submit
         //3. execute axios call based on user input
-        // this.getDogImages(this.state.breed)
+        getDogImages(this.state.breed)
+            .then(resp=> {
+            this.setState({
+                ...this.state,
+                dogImages:resp.data.message
+            });
+        })
+        .catch(err=> {
+            console.log(err);
+        })
     }
     handleChange = (e) => {
         // axios.get(`https://dog.ceo/api/breed/${this.state.breed}/images`)
