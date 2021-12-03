@@ -2,9 +2,25 @@ import React from 'react';
 import axios from 'axios';
 
 const getDogImages = (breed) => {
-   const promise =  axios.get(`https://dog.ceo/api/breed/${breed}/images`)
-
-    return promise
+   return axios.get(`https://dog.ceo/api/breed/${breed}/images`)
+   .then(resp=> {
+    // this.setState({
+    //     ...this.state,
+    //     dogImages:resp.data.message
+    // });
+    console.log("frist 1", resp)
+    return (resp.data)
+})
+.then(data=>{
+    console.log("second 2", data)
+    return (data.message)
+})
+.then(images => {
+    console.log("last 1", images)
+})
+.catch(err=> {
+    console.log(err);
+})
 }
 
 class App extends React.Component {
