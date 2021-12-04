@@ -10,17 +10,18 @@ const getDogImages = (breed) => {
     // });
     console.log("frist 1", resp)
     return (resp.data)
-})
-.then(data=>{
-    console.log("second 2", data)
-    return (data.message)
-})
-.then(images => {
-    console.log("last 1", images)
-})
-.catch(err=> {
-    console.log(err);
-})
+    })
+    .then(data=>{
+        console.log("second 2", data)
+        return (data.message)
+    })
+    .then(images => {
+        console.log("last 1", images)
+        return (images)
+    })
+    .catch(err=> {
+        console.log(err);
+    })
 }
 
 class App extends React.Component {
@@ -33,10 +34,12 @@ class App extends React.Component {
     componentDidMount(prevProps, prevState) {
         getDogImages(this.state.breed)
         // axios.get(`https://dog.ceo/api/breed/${this.state.breed}/images`)
-            .then(resp=> {
+            .then(dagImage => {
+                console.log("dogImage ", dagImage)
                 this.setState({
                     ...this.state,
-                    dogImages:resp.data.message
+                    dogImages: dagImage
+                    // dogImages:resp.data.message
                 });
             })
             .catch(err=> {
