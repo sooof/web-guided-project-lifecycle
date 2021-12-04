@@ -54,10 +54,12 @@ class App extends React.Component {
             if(this.state.breed === "chihuahua"){
                 console.log("In side")
                 getDogImages("husky")
-                .then(resp=> {
+                .then(dagImage => {
+                    console.log("dogImage ", dagImage)
                     this.setState({
                         ...this.state,
-                        dogImages:resp.data.message
+                        dogImages: dagImage
+                        // dogImages:resp.data.message
                     });
                 })
                 .catch(err=> {
@@ -81,10 +83,12 @@ class App extends React.Component {
         //2. capture submit
         //3. execute axios call based on user input
         getDogImages(this.state.breed)
-            .then(resp=> {
+        .then(dagImage => {
+            console.log("dogImage ", dagImage)
             this.setState({
                 ...this.state,
-                dogImages:resp.data.message
+                dogImages: dagImage
+                // dogImages:resp.data.message
             });
         })
         .catch(err=> {
